@@ -3,9 +3,10 @@ package ru.geekbrains;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 import ru.geekbrains.base.enums.CategoryType;
 import ru.geekbrains.dto.Category;
+import ru.geekbrains.dto.CategoryErr;
+import ru.geekbrains.service.CategoryErrService;
 import ru.geekbrains.service.CategoryService;
 import ru.geekbrains.util.RetrofitUtils;
 
@@ -13,9 +14,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.geekbrains.base.enums.CategoryType.FOOD;
 
-public class CategoryTests {
+public class getEmptyCategoryPositiveTest {
    static CategoryService categoryService;
 
     @BeforeAll
@@ -24,13 +24,13 @@ public class CategoryTests {
     }
 
     @Test
-    void getFoodCategoryPositiveTest() throws IOException {
+    void getCategoryNegativeTest() throws IOException {
         Response<Category> response = categoryService
-                .getCategory(FOOD.getId())
+                .getCategory(CategoryType.ELECTRONICS.getId())
                 .execute();
-        assertThat(response.isSuccessful()).isTrue();
-        assertThat(response.body().getId()).as("Id is not equal to 1!").isEqualTo(1);
-        assertThat(response.body().getTitle()).isEqualTo(FOOD.getTitle());
+        assertThat(response.code()).isEqualTo(200);
+        assertThat(response.body().getId()).isEqualTo(CategoryType.ELECTRONICS.getId());
+        //500-я ошибка, должна быть 400
     }
 
 }

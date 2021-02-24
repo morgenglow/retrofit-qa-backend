@@ -4,11 +4,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import ru.geekbrains.dto.Category;
+import ru.geekbrains.dto.CategoryErr;
 
-public interface CategoryService {
+public interface CategoryErrService {
     @GET("categories/{id}")
-    Call<Category> getCategory(@Path("id") Integer id);
-
-    @GET("categories")
-    Call<Category> getALLCategory();
+    Call<CategoryErr> getCategory(@Path("id") String id);
 }
