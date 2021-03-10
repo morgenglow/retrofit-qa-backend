@@ -1,6 +1,9 @@
 package ru.geekbrains;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
 import ru.geekbrains.base.enums.CategoryType;
@@ -24,6 +27,9 @@ public class getEmptyCategoryPositiveTest {
     }
 
     @Test
+    @DisplayName("Негативный кейс на запрос категории")
+    @Step("Тест")
+    @Description("Запрос пустой категории")
     void getCategoryNegativeTest() throws IOException {
         Response<Category> response = categoryService
                 .getCategory(CategoryType.ELECTRONICS.getId())

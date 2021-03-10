@@ -1,7 +1,10 @@
 package ru.geekbrains;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.Description;
 import okhttp3.ResponseBody;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
 import ru.geekbrains.dto.Product;
@@ -23,6 +26,9 @@ public class deleteProductEmptyIDTest {
     }
 
     @Test
+    @DisplayName("Негативный кейс на удаление продукта")
+    @Step ("Тест")
+    @Description("Удаление несуществующего продукта, обозначенного пробелом")
     void tearDown() {
         try {
             retrofit2.Response<ResponseBody> response =

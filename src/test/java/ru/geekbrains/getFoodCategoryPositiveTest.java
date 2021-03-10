@@ -1,6 +1,9 @@
 package ru.geekbrains;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -24,6 +27,9 @@ public class getFoodCategoryPositiveTest {
     }
 
     @Test
+    @DisplayName("Позитивный кейс на запрос категории")
+    @Step("Тест")
+    @Description("Запрос существующей категории")
     void getFoodCategoryPositiveTest() throws IOException {
         Response<Category> response = categoryService
                 .getCategory(FOOD.getId())

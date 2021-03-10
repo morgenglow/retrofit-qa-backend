@@ -1,11 +1,9 @@
 package ru.geekbrains;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.geekbrains.base.enums.CategoryType;
 import ru.geekbrains.commonRequests.CreateProduct;
 import ru.geekbrains.commonRequests.DeleteReq;
@@ -30,6 +28,8 @@ public class putNegativeNonexistingProductTest {
     }
 
     @BeforeEach
+    @DisplayName("Негативный кейс на создание продукта")
+    @Step("Создание данных продукта")
     void setUp(){
         Faker faker = new Faker();
         productChange = new Product()
@@ -40,6 +40,7 @@ public class putNegativeNonexistingProductTest {
 
     @SneakyThrows
     @Test
+    @Step("Создание продукта")
     void changeProductTest() {
         retrofit2.Response<Product> response =
                 productService.changeProduct(productId,productChange)

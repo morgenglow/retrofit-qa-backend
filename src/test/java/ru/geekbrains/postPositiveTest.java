@@ -1,11 +1,9 @@
 package ru.geekbrains;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.geekbrains.base.enums.CategoryType;
 import ru.geekbrains.commonRequests.DeleteReq;
 import ru.geekbrains.dto.Product;
@@ -34,6 +32,8 @@ public class postPositiveTest {
     }
 
     @BeforeEach
+    @DisplayName("Позитивный кейс на создание продукта")
+    @Step("Создание данных продукта")
     void setUp() {
         product = new Product()
                 .withCategoryTitle(CategoryType.FOOD.getTitle())
@@ -43,6 +43,7 @@ public class postPositiveTest {
 
     @SneakyThrows
     @Test
+    @Step("Создание продукта")
     void createNewProductTest() {
         retrofit2.Response<Product> response =
                 productService.createProduct(product)
@@ -53,6 +54,7 @@ public class postPositiveTest {
     }
 
     @AfterEach
+    @Step("Удаление продукта")
     void delete(){
             DbUtils.getProductsMapper().deleteByPrimaryKey(Long.valueOf(productId));
     }

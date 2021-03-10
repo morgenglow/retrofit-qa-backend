@@ -1,6 +1,9 @@
 package ru.geekbrains;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
 import ru.geekbrains.dto.Product;
@@ -22,6 +25,9 @@ public class getProductNonexistingIDTest {
     }
 
     @Test
+    @DisplayName("Негативный кейс на запрос продукта")
+    @Step("Тест")
+    @Description("Запрос несуществующего продукта с нулевым ID")
     void getProductPositiveTest() throws IOException {
         Response<Product> response = productService
                 .getProduct(productId)

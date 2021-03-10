@@ -1,6 +1,8 @@
 package ru.geekbrains;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
 import ru.geekbrains.dto.Category;
@@ -24,6 +26,8 @@ public class getProductsPositiveTest {
     }
 
     @Test
+    @DisplayName("Позитивный кейс на запрос продуктов")
+    @Step("Тест")
     void getProductsPositiveTest() throws IOException {
         Response<Product> response = productService
                 .getProducts()

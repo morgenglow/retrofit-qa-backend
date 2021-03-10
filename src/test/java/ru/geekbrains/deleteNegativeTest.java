@@ -1,12 +1,10 @@
 package ru.geekbrains;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Description;
 import lombok.SneakyThrows;
 import okhttp3.ResponseBody;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.geekbrains.base.enums.CategoryType;
 import ru.geekbrains.dto.Product;
 import ru.geekbrains.service.ProductService;
@@ -29,6 +27,8 @@ public class deleteNegativeTest {
     }
 
     @Test
+    @DisplayName("Негативный кейс на удаление продукта")
+    @Description("Удаление несуществующего продукта")
     void tearDown() {
         try {
             retrofit2.Response<ResponseBody> response =

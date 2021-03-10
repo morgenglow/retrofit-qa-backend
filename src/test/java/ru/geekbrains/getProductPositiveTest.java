@@ -1,9 +1,8 @@
 package ru.geekbrains;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.*;
 import retrofit2.Response;
 import ru.geekbrains.commonRequests.CreateProduct;
 import ru.geekbrains.dto.Product;
@@ -29,6 +28,8 @@ public class getProductPositiveTest {
         productService = RetrofitUtils.getRetrofit().create(ProductService.class);
     }
 
+    @DisplayName("Позитивный кейс на запрос продукта")
+    @Step("Создание продукта")
     @BeforeEach
     void beforeEach() throws IOException {
         product = CreateProduct.createProduct();
@@ -36,6 +37,8 @@ public class getProductPositiveTest {
     }
 
     @Test
+    @Step("Тест")
+    @Description("Запрос существующего продукта")
     void getProductPositiveTest() throws IOException {
         Response<Product> response = productService
                 .getProduct(product.getId())
@@ -44,6 +47,7 @@ public class getProductPositiveTest {
         assertThat(productsMapper.selectByPrimaryKey(Long.valueOf(productId)).getTitle()).isEqualTo(product.getTitle());
     }
 
+    @Step("Удаление продукта")
     @AfterEach
     void delete(){
         DbUtils.getProductsMapper().deleteByPrimaryKey(Long.valueOf(productId));

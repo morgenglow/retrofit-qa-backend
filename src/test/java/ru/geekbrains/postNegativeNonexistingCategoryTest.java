@@ -1,9 +1,11 @@
 package ru.geekbrains;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.dto.Product;
 import ru.geekbrains.service.ProductService;
@@ -25,6 +27,8 @@ public class postNegativeNonexistingCategoryTest {
     }
 
     @BeforeEach
+    @DisplayName("Негативный кейс на создание продукта")
+    @Step("Создание данных продукта")
     void setUp() {
         product = new Product()
                 .withCategoryTitle("TRASH")
@@ -34,6 +38,7 @@ public class postNegativeNonexistingCategoryTest {
 
     @SneakyThrows
     @Test
+    @Step("Создание продукта")
     void createNewProductNegativeTest() {
         retrofit2.Response<Product> response =
                 productService.createProduct(product)
